@@ -1,0 +1,19 @@
+# ----- .NET / Visual Studio -----
+bin/
+obj/
+artifacts/
+*.user
+*.suo
+.vs/
+
+# Secrets (contains real DB password)
+appsettings.Development.json
+
+# ----- Logs -----
+*.log
+
+# ----- System / IDE -----
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
