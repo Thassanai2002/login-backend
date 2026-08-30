@@ -8,6 +8,7 @@ artifacts/
 
 # Secrets (contains real DB password)
 appsettings.Development.json
+.env
 
 # ----- Logs -----
 *.log

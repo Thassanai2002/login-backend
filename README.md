@@ -89,4 +89,24 @@ Content-Type: application/json
 ## หมายเหตุ
 
 - ยังไม่มี JWT เข้าไว้ — ตอนนี้ login แล้ว client เก็บ `username` ไว้เองฝั่งเดียว (ง่ายๆ ตาม spec)
-- เปิด CORS ให้ `http://localhost:4200` (Angular dev server) อยู่แล้ว
+- เปิด CORS ให้ `http://localhost:4200` (Angular dev server) และโดมิน Cloudflare แล้ว — แก้ได้ที่ `appsettings.json` → `Cors:AllowedOrigins`
+
+## รันด้วย Docker (SQL Server + API)
+
+ใช้ `docker-compose` จะได้ SQL Server ขึ้นมาพร้อมกับ API ใน network เดียวกัน
+(API จะสร้างตาราง `Users` ให้อัตโนมัติตอน start ผ่าน EF migration)
+
+```
+cd backend
+copy .env.example .env      # จริงๆ แล้วแก้ SA_PASSWORD ให้เป็นรหัสที่ต้องการ
+docker compose up -d
+```
+
+- SQL Server → `localhost:1433` (sa / ตาม `.env`)
+- API → `http://localhost` (port 80)
+
+สร้าง image อย่างเดียว (ไม่ต้องรัน):
+
+```
+docker build -t loginapi .
+```
